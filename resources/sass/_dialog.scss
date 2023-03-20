@@ -38,12 +38,12 @@ dialog[open] div a{
 }
 
 dialog[open] div a:first-of-type{
-    border: 2px solid var($accent-2);
+    border: 2px solid $accent-2;
 }
 
 dialog[open] div a:last-of-type{
     color: black;
     font-weight: 700;
-    background-color: var($accent-2);
+    background-color: $accent-2;
 }
 /* End dialog */

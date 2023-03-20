@@ -21,16 +21,12 @@ header section{
     width: 100%;
 }
 
-body:not(#home) header section{
-    display: none;
-}
-
 header section h2::before{
     content: "";
     position: absolute;
     bottom: -4px;
     height: 6px;
-    background-color: var($accent-1);
+    background-color: $accent-1;
     animation: load_underline .6s 1.2s ease-out forwards;
 }
 
@@ -48,7 +44,7 @@ header section > div{
     grid-template-columns: repeat(2, 1fr);
     overflow: hidden;
     border-radius: 2px;
-    border: var($border);
+    border: $border;
 }
 
 header section > div::before{
@@ -56,7 +52,7 @@ header section > div::before{
     position: absolute;
     inset-block: 0;
     width: 50%;
-    background-color: var($accent-1);
+    background-color: $accent-1;
     transition: all 0.3s ease-out;
 }
 

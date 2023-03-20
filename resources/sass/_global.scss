@@ -47,7 +47,7 @@ ul, menu{
 
 header, main, aside, footer, dialog {
     position: relative;
-    padding: var($container-padding);
+    padding: $container-padding;
 }
 
 /* Start main */
@@ -77,7 +77,7 @@ main.loading h1::before{
     bottom: -4px;
     width: 50%;
     height: 4px;
-    background-color: var($accent-1);
+    background-color: $accent-1;
     animation: page-loader .5s ease-out infinite alternate;
 }
 
