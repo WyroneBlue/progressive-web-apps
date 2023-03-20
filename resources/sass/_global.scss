@@ -1,0 +1,92 @@
+/* Css reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Custom font */
+@font-face {
+    font-family: 'MuseoModerno';
+    src: url('../assets/fonts/MuseoModerno-VariableFont_wght.ttf');
+}
+
+/* Focus state outline */
+:focus{
+    outline: 2px solid red;
+    outline-offset: 4px;
+}
+
+/* Global styles */
+body {
+    font-family: 'MuseoModerno', sans-serif;
+    max-width: 960px;
+    margin-inline: auto;
+}
+
+/* Hide overflow on body if dialog or aside is open */
+body:has(aside.show),
+body:has(dialog[open]){
+    overflow: hidden;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+button{
+    cursor: pointer;
+    appearance: none;
+}
+
+ul, menu{
+    list-style: none;
+}
+
+header, main, aside, footer, dialog {
+    position: relative;
+    padding: var($container-padding);
+}
+
+/* Start main */
+main{
+    display: flex;
+    flex-direction: column;
+    transition: all 0.6s ease-in-out;
+}
+
+main.page-transition{
+    opacity: 0;
+    transform: scale(.95);
+}
+
+main.loading{
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 100vh;
+    display: grid;
+    place-content: center;
+}
+
+main.loading h1::before{
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    width: 50%;
+    height: 4px;
+    background-color: var($accent-1);
+    animation: page-loader .5s ease-out infinite alternate;
+}
+
+@keyframes page-loader{
+    0%{
+        transform: translateX(-100%);
+    }
+    100%{
+        transform: translateX(150%);
+    }
+}
+/* End main */

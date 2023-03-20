@@ -1,0 +1,102 @@
+/* Start header */
+header{
+    position: sticky;
+    top: -60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    z-index: 9;
+}
+
+header h1{
+    line-height: 1.7rem;
+}
+
+header section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+body:not(#home) header section{
+    display: none;
+}
+
+header section h2::before{
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    height: 6px;
+    background-color: var($accent-1);
+    animation: load_underline .6s 1.2s ease-out forwards;
+}
+
+@keyframes load_underline{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 30px;
+    }
+}
+
+header section > div{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow: hidden;
+    border-radius: 2px;
+    border: var($border);
+}
+
+header section > div::before{
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    width: 50%;
+    background-color: var($accent-1);
+    transition: all 0.3s ease-out;
+}
+
+header section > div:has(input:first-of-type:checked)::before{
+    transform: translateX(0);
+}
+
+header section > div:has(input:last-of-type:checked)::before{
+    transform: translateX(100%);
+}
+
+header section > div label{
+    display: grid;
+    place-content: center;
+}
+
+header section > div label div{
+    display: grid;
+    gap: 2px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+header section > div label:first-of-type div{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+header section > div label:last-of-type div{
+    grid-template-columns: repeat(3, 1fr);
+}
+
+header section > div label div span{
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 2px;
+}
+
+header section div input{
+    display: none;
+}
+/* End header */

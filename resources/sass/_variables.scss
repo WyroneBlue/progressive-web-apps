@@ -1,0 +1,17 @@
+/* Variables */
+$main-color: rgba(181, 135, 248, 1);
+$secondary-color: rgba(193, 225, 193, 1);
+
+$border-color: black;
+$border: 2px solid var($border-color);
+
+$accent-1: var($main-color);
+$accent-2: var($secondary-color);
+
+$skeleton-color: #f2f2f2;
+$skeleton-loading: #e0e0e0;
+
+$grid-col-2: repeat(2, 1fr);
+$grid-col-3: repeat(3, 1fr);
+
+$container-padding: 20px;

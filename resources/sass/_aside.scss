@@ -1,0 +1,122 @@
+/* Start aside */
+aside{
+    position: fixed;
+    bottom: 0;
+    inset-inline: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 91vh;
+    padding: var($container-padding);
+    background: linear-gradient(180deg, rgba(33, 31, 31, .5) 0%, rgba(33, 31, 31, 1) 2%,  rgba(255, 255, 255, .8) 100%);
+    color: white;
+    opacity: 0;
+    transform: translateY(100%);
+
+    z-index: 10;
+    transition: all 0.5s ease-in-out .3s;
+}
+
+aside div{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 800px;
+    margin-inline: auto;
+}
+
+aside[aria-label="favorites"] ul{
+    display: grid;
+    grid-template-columns: var($grid-col-2);
+    gap: 10px;
+}
+
+aside[aria-label="favorites"] ul > li{
+    display: flex;
+    flex-direction: column;
+}
+
+aside.show{
+    opacity: 1;
+    transform: translateY(0);
+    overflow-y: auto;
+}
+
+body:has(aside.show) main{
+    filter: blur(20px);
+    pointer-events: none;
+}
+
+aside > div > section{
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: black;
+    background-color: var($accent-2);
+    overflow-x: auto;
+    z-index: 1;
+}
+
+aside > div > section > button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+aside form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+aside form > label:first-of-type{
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+aside form input[type="search"]{
+    border-radius: 5px;
+    padding: 10px 5px;
+}
+
+aside form fieldset{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+}
+
+aside form fieldset label{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: black;
+    background-color: var($accent-1);
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+aside form fieldset label:has(input:checked){
+    background-color: var($accent-2);
+}
+
+aside form button{
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, .7);
+    color: white;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: background-color .3s ease-out;
+}
+
+aside form button:hover{
+    background-color: rgba(0, 0, 0, 1);
+}
+/* End aside */

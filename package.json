@@ -1,0 +1,21 @@
+{
+  "name": "progressive-web-apps",
+  "version": "1.0.0",
+  "description": "Progressive Web Apps for the minor Web Development",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js --watch",
+    "sass": "node-sass --watch resources/sass/app.scss -o public/css --output-style compressed",
+    "dev-sass": "npm run dev & npm run sass"
+  },
+  "author": "Ymaro Blue",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.2",
+    "node-sass": "^8.0.0"
+  },
+  "type": "module"
+}

@@ -1,0 +1,62 @@
+/* Start details */
+body#details main span{
+    display: inline;
+    color: red;
+}
+
+body#details main section{
+    max-width: 600px;
+    margin-inline: auto;
+}
+
+body#details main section nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap-reverse;
+}
+
+body#details main section nav a{
+    display: block;
+    width: fit-content;
+}
+
+body#details main section nav a:last-of-type{
+    background-color: var($accent-2);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+body#details main section nav a:last-of-type::after{
+    content: " 🔗";
+    padding: 1px 4px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+body#details main article{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+body#details main article div{
+    max-height: 80vh;
+}
+
+body#details main article img{
+    width: 100%;
+}
+
+body#details main article button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+/* End details */
