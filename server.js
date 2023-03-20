@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Load env variables
 import dotenv from 'dotenv';
@@ -27,7 +27,8 @@ app.engine('hbs', engine({
 }));
 app.set('view engine', 'hbs');
 app.set("views", "./views");
-app.use('/public', express.static(join(__dirname, 'public')));
+// app.use('/public', express.static(join(__dirname, 'public')));
+app.use(express.static('public'))
 
 // Use Routes
 app.use('/', routes);
