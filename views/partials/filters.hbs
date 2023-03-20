@@ -1,0 +1,66 @@
+
+<!-- Aside: Search and filters -->
+<aside aria-label="filters">
+    <div>
+        <section>
+            <h2>Filters</h2>
+            <button tabindex="-1">❌</button>
+        </section>
+
+        <form>
+
+            <!-- Searchbar -->
+            <label>
+                Search
+                <input tabindex="-1" type="search" placeholder="Search collection for art or artist....">
+            </label>
+
+            <!-- Sort options -->
+            <fieldset>
+                <legend>Sort By</legend>
+                <label>
+                    Relevance
+                    <input tabindex="-1" type="radio" name="sort" value="relevance" checked>
+                </label>
+                <label>
+                    Type
+                    <input tabindex="-1" type="radio" name="sort" value="objecttype">
+                </label>
+                <label>
+                    Oldest first
+                    <input tabindex="-1" type="radio" name="sort" value="chronologic">
+                </label>
+                <label>
+                    Newest first
+                    <input tabindex="-1" type="radio" name="sort" value="achronologic">
+                </label>
+                <label>
+                    Artist a-z
+                    <input tabindex="-1" type="radio" name="sort" value="artist">
+                </label>
+                <label>
+                    Artist z-a
+                    <input tabindex="-1" type="radio" name="sort" value="artistdesc">
+                </label>
+            </fieldset>
+
+            <!-- Extra filter options -->
+            <fieldset>
+                <legend>Extra options</legend>
+                <label>
+                    Top pieces only
+                    <input tabindex="-1" type="checkbox" name="top-piece" checked>
+                </label>
+                <label>
+                    With image only
+                    <input tabindex="-1" type="checkbox" name="image-only" checked>
+                </label>
+            </fieldset>
+
+            <!-- Submit button -->
+            <button tabindex="-1">
+                Search art
+            </button>
+        </form>
+    </div>
+</aside>
