@@ -2,7 +2,7 @@
   "name": "progressive-web-apps",
   "version": "1.0.0",
   "description": "Progressive Web Apps for the minor Web Development",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "start": "node app.js",
     "dev": "node app.js --watch",
