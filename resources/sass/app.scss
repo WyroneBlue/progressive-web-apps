@@ -7,8 +7,10 @@
 @import 'header';
 @import 'footer';
 
-// Pages
-@import 'details';
-@import 'card';
+// Components
 @import 'spinner';
 @import 'aside';
+@import 'card';
+
+// Pages
+@import 'details';
