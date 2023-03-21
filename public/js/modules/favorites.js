@@ -1,4 +1,4 @@
-import { $, $$, awaitMap } from './helpers.js';
+import { $, awaitMap } from './helpers.js';
 import { filters, toggleFilters } from './filters.js';
 import { closeOnEscape } from '../app.js';
 
@@ -81,6 +81,22 @@ export async function toggleFavorites() {
         favoritesList.innerHTML = '';
         document.removeEventListener('keydown', closeOnEscape);
     }
+}
+
+// Toggle favorite item
+export const toggleFavorite = (e, objectNumber) => {
+
+    const favoButton = e.target;
+    if (isFavorite(objectNumber)) {
+
+        removeFavorite(objectNumber);
+        showFavoriteAnimation(favoButton, 'removed', '🖤');
+    } else {
+
+        addFavorite(objectNumber);
+        showFavoriteAnimation(favoButton, 'saved', '❤️');
+    }
+    saveFavorites();
 }
 
 // Add favorite and save to local storage

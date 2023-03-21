@@ -1,4 +1,4 @@
-import { $, $$, awaitMap } from './helpers.js';
+import { $, $$ } from './helpers.js';
 import { favorites, toggleFavorites } from './favorites.js';
 import { closeOnEscape } from '../app.js';
 

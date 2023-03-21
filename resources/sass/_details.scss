@@ -1,5 +1,5 @@
 /* Start details */
-body:not(#home) header section{
+body:has(#details) header section{
     display: none;
 }
 
