@@ -1,6 +1,7 @@
 import { $, $$ } from './helpers.js';
 import { favorites, toggleFavorites } from './favorites.js';
 import { closeOnEscape } from '../app.js';
+import { renderSkeleton } from './requests.js';
 
 export const filters = $('aside[aria-label="filters"]');
 const filterButton = $('footer button[aria-label="toggle-filters"]');

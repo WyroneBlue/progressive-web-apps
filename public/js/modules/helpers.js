@@ -23,6 +23,31 @@ export const get = async (url) => {
     }
 }
 
+// fetch including trycatch
+export const post = async (url, options = {}) => {
+
+    try {
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(options)
+        });
+
+        if (!response.ok && response.status === 403) {
+            throw new Error('Something went wrong');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+
+
 // Mapping over an array and returning a promise
 export const awaitMap = async (callback) => {
     return await Promise.all(callback);

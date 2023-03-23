@@ -1,7 +1,8 @@
 import { $ } from "./helpers.js";
-import { fetchDetailImages } from "./data.js";
+import { fetchDetailImages } from "./requests.js";
 import { isMobile } from "./helpers.js";
 import { showInfo } from "../pages/details.js";
+import { setEventListener, goToPage } from "./transition.js";
 
 // Art card component
 export const artCard = async({ item, saveButtonIcon, resultsContainer, observe = false, }) => {
@@ -46,7 +47,7 @@ export const artCard = async({ item, saveButtonIcon, resultsContainer, observe =
     let html = `
     <li>
         <article>
-            <a href="/details/${item.objectNumber}">
+            <a href="/art-piece/${item.objectNumber}">
                 <h3>${item.title}</h3>
                 <img data-src="${img}" alt="${alt}">
             </a>
@@ -72,6 +73,11 @@ export const artCard = async({ item, saveButtonIcon, resultsContainer, observe =
     // add event listeners to the last item
     const infoButton = $('menu li:last-of-type button', lastItem);
     infoButton.addEventListener('click', (e) => showInfo(e, item));
+
+    const link = $('article a', lastItem);
+    console.log(link);
+    setEventListener(link, goToPage);
+
 
     // check if the device is mobile
     if(isMobile){

@@ -2,23 +2,25 @@ import { $, $$ } from './helpers.js';
 
 // Get main element
 const main = $('main');
+console.log(main);
 
 // Get all anchor elements
-const anchors = $$('a');
+const anchors = $$('a:not([target="_blank"])');
+console.log(anchors);
+
+export const goToPage = (e) => {
+    e.preventDefault();
+    console.log('clicked');
+    const anchor = e.currentTarget;
+    main.classList.add('page-transition');
+    setTimeout(() => {
+        window.location = anchor.href;
+    }, 1000);
+}
 
 // Add event listener to each anchor
 anchors.forEach(anchor => {
-
-    anchor.addEventListener('click', (e) => {
-
-        e.preventDefault();
-        console.log('clicked');
-        main.classList.add('page-transition');
-
-        setTimeout(() => {
-            window.location = anchor.href;
-        }, 1000);
-    });
+    setEventListener(anchor, goToPage);
 });
 
 // toggle page transition
@@ -34,6 +36,9 @@ export function transitionPage(func, options = '', time = 1000) {
     }, time);
 }
 
+export function setEventListener(el, func, ev = 'click'){
+    el.addEventListener(ev, func);
+}
 
 window.addEventListener('load', () => {
     main.classList.remove('page-transition');

@@ -1,6 +1,8 @@
 import { $, awaitMap } from './helpers.js';
 import { filters, toggleFilters } from './filters.js';
 import { closeOnEscape } from '../app.js';
+import { renderSkeleton, fetchFavoriteDetails } from './requests.js';
+import { artCard } from './artCard.js';
 
 // Favorites from local storage
 const storage = localStorage.getItem('favorites');
@@ -43,10 +45,13 @@ const loadFavorites = async () => {
     renderSkeleton(favoritesList, false);
 
     // Fetch details for each item
-    const items = await awaitMap(favoritesArray.map(async (id) => {
-        const { artObject: item } = await fetchDetails(id);
-        return item;
-    }));
+    // const items = await awaitMap(favoritesArray.map(async (id) => {
+    //     const { artObject: item } = await fetchDetails(id);
+    //     return item;
+    // }));
+
+    const items = await fetchFavoriteDetails(favoritesArray);
+    console.log(items);
     favoritesList.innerHTML = '';
 
     // Render each item
@@ -83,6 +88,15 @@ export async function toggleFavorites() {
     }
 }
 
+// Toggle favorite animation
+export const showFavoriteAnimation = (el, className, icon) => {
+    el.classList.add(className);
+    el.addEventListener('animationend', () => {
+        el.classList.remove(className);
+        el.innerHTML = icon;
+    });
+}
+
 // Toggle favorite item
 export const toggleFavorite = (e, objectNumber) => {
 
@@ -98,6 +112,7 @@ export const toggleFavorite = (e, objectNumber) => {
     }
     saveFavorites();
 }
+
 
 // Add favorite and save to local storage
 function addFavorite(id) {
