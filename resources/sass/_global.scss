@@ -13,9 +13,9 @@
 }
 
 /* Focus state outline */
-:focus{
-    outline: 2px solid red;
-    outline-offset: 4px;
+:focus-visible{
+    outline: $focus-outline;
+    outline-offset: 6px;
 }
 
 /* Global styles */

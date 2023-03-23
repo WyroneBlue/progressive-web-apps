@@ -91,6 +91,10 @@ aside ul > li a{
     aspect-ratio: 1/1;
 }
 
+li article > a:focus-visible{
+    border: $focus-outline;
+}
+
 main ul > li a img,
 aside ul > li a img{
     grid-row: 1/-1;
