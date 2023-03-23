@@ -1,3 +1,4 @@
+import { closeWindows } from '../app.js';
 import { $, $$ } from './helpers.js';
 
 // Get main element
@@ -8,8 +9,9 @@ console.log(main);
 const anchors = $$('a:not([target="_blank"])');
 
 export const goToPage = (e) => {
-    e.preventDefault();
     console.log('clicked');
+    e.preventDefault();
+    closeWindows();
     const anchor = e.currentTarget;
     main.classList.add('page-transition');
     setTimeout(() => {

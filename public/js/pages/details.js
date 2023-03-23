@@ -1,7 +1,7 @@
 import { $ } from '../modules/helpers.js';
 import { fetchDetails } from '../modules/requests.js';
 import { isFavorite, toggleFavorite } from '../modules/favorites.js';
-import { transitionPage } from '../modules/transition.js';
+import { goToPage, setEventListener, transitionPage } from '../modules/transition.js';
 import { showError } from './error.js';
 
 const main = $('main');
@@ -114,7 +114,7 @@ export const showInfo = (e, item) => {
 
         <div>
             <a href="${item.links.web}" target="_blank">Bekijk op rijksmuseum</a>
-            <a href="#details/${item.objectNumber}">
+            <a href="/art-piece/${item.objectNumber}">
                 Bekijk detail pagina
             </a>
         </div>
@@ -122,8 +122,10 @@ export const showInfo = (e, item) => {
 
     // Add event listeners for closing dialog
     const detailButton = $('a:last-of-type', dialog);
-    detailButton.addEventListener('click', () => {
+
+    detailButton.addEventListener('click', (e) => {
         closeDialog();
+        goToPage(e);
     });
 
     dialog.showModal();

@@ -1,7 +1,7 @@
 console.log('Wagwan world!')
 
-import { toggleFilters } from './modules/filters.js';
-import { toggleFavorites } from './modules/favorites.js';
+import { filters, toggleFilters } from './modules/filters.js';
+import { favorites, toggleFavorites } from './modules/favorites.js';
 
 // close filters and favorites window
 export function closeWindows() {
