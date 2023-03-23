@@ -3,17 +3,17 @@ body:has(#details) header section{
     display: none;
 }
 
-body#details main span{
+main#details span{
     display: inline;
     color: red;
 }
 
-body#details main section{
+main#details section{
     max-width: 600px;
     margin-inline: auto;
 }
 
-body#details main section nav{
+main#details section nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,25 +21,25 @@ body#details main section nav{
     flex-wrap: wrap-reverse;
 }
 
-body#details main section nav a{
+main#details section nav a{
     display: block;
     width: fit-content;
 }
 
-body#details main section nav a:last-of-type{
+main#details section nav a:last-of-type{
     background-color: $accent-2;
     padding: 5px 10px;
     border-radius: 20px;
 }
 
-body#details main section nav a:last-of-type::after{
+main#details section nav a:last-of-type::after{
     content: " 🔗";
     padding: 1px 4px;
     background-color: white;
     border-radius: 50%;
 }
 
-body#details main article{
+main#details article{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -47,15 +47,15 @@ body#details main article{
     margin-top: 20px;
 }
 
-body#details main article div{
+main#details article div{
     max-height: 80vh;
 }
 
-body#details main article img{
+main#details article img{
     width: 100%;
 }
 
-body#details main article button{
+main#details article button{
     position: absolute;
     top: 10px;
     right: 10px;
