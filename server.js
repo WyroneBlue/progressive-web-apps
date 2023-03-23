@@ -1,3 +1,6 @@
+// Load env variables
+import './utils/loadEnv.js';
+
 // Express Setup
 import express from 'express';
 import path from 'path';
@@ -8,9 +11,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Load env variables
-import dotenv from 'dotenv';
-dotenv.config();
+// BodyParser
+const urlencodedParser = express.urlencoded({ extended: true });
+app.use(urlencodedParser);
+app.use(express.json());
 
 // Routes
 import routes from "./routes/index.js";
