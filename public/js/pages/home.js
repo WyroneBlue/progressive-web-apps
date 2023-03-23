@@ -1,5 +1,5 @@
 import { $, awaitMap } from '../modules/helpers.js';
-import { fetchItems, renderSkeleton } from '../modules/data.js';
+import { fetchItems, renderSkeleton } from '../modules/requests.js';
 import { artCard } from '../modules/artCard.js';
 import { isFavorite, toggleFavorite } from '../modules/favorites.js';
 

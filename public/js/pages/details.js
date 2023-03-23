@@ -1,5 +1,5 @@
 import { $ } from '../modules/helpers.js';
-import { fetchDetails } from '../modules/data.js';
+import { fetchDetails } from '../modules/requests.js';
 import { isFavorite, toggleFavorite } from '../modules/favorites.js';
 import { transitionPage } from '../modules/transition.js';
 import { showError } from './error.js';
