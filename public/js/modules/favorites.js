@@ -45,13 +45,7 @@ const loadFavorites = async () => {
     renderSkeleton(favoritesList, false);
 
     // Fetch details for each item
-    // const items = await awaitMap(favoritesArray.map(async (id) => {
-    //     const { artObject: item } = await fetchDetails(id);
-    //     return item;
-    // }));
-
     const items = await fetchFavoriteDetails(favoritesArray);
-    console.log(items);
     favoritesList.innerHTML = '';
 
     // Render each item

@@ -6,7 +6,6 @@ console.log(main);
 
 // Get all anchor elements
 const anchors = $$('a:not([target="_blank"])');
-console.log(anchors);
 
 export const goToPage = (e) => {
     e.preventDefault();

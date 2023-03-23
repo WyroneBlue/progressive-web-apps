@@ -75,7 +75,6 @@ export const artCard = async({ item, saveButtonIcon, resultsContainer, observe =
     infoButton.addEventListener('click', (e) => showInfo(e, item));
 
     const link = $('article a', lastItem);
-    console.log(link);
     setEventListener(link, goToPage);
 
 
