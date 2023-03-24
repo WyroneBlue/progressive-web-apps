@@ -1,3 +1,8 @@
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+export const getParam = (param) => urlParams.get(param);
+
 // check if user is using mobile device
 export const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 

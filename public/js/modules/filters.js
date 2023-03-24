@@ -15,27 +15,19 @@ closeFilters.addEventListener('click', toggleFilters);
 const searhArt = async (e) => {
     e.preventDefault();
 
-    let freshLoad = true;
-    if (window.location.hash !== '#home' && window.location.hash !== '') {
-        freshLoad = false;
-        window.location = '#home';
-    }
-
-    const search = $('label:first-of-type input', form).value;
-    const sort = $('fieldset input:checked', form).value;
-    const topPiece = $('fieldset label:first-of-type input[name="top-piece"]', form).checked;
-    const imageOnly = $('fieldset label:last-of-type input[name="image-only"]', form).checked;
-
     toggleFilters();
-
     const resultsContainer = $('main > ul');
     renderSkeleton(resultsContainer, false);
 
-    const { artObjects: items } = await searchItems(1, search, sort, topPiece, imageOnly);
+    // let freshLoad = true;
 
-    setTimeout(() => {
-        renderArtDisplay(items, freshLoad, true);
-    }, 2000);
+    // const search = $('label:first-of-type input', form).value;
+    // const sort = $('fieldset input:checked', form).value;
+    // const topPiece = $('fieldset label:first-of-type input[name="top-piece"]', form).checked;
+    // const imageOnly = $('fieldset label:last-of-type input[name="image-only"]', form).checked;
+
+    // submit form with values
+    form.submit();
 }
 
 // toggle filters window

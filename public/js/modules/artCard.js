@@ -1,7 +1,7 @@
 import { $ } from "./helpers.js";
 import { fetchDetailImages } from "./requests.js";
 import { isMobile } from "./helpers.js";
-import { showInfo } from "../pages/details.js";
+import { showInfo } from "./modal.js";
 import { setEventListener, goToPage } from "./transition.js";
 
 // Art card component
@@ -24,7 +24,7 @@ export const artCard = async({ item, saveButtonIcon, resultsContainer, observe =
 
     } catch (error) { // If that fails, use a placeholder image
 
-        const imgPlaceholder = './assets/images/explore-placeholder.jpg';
+        const imgPlaceholder = './images/explore-placeholder.jpg';
         img = imgPlaceholder;
         alt = `Placeholder image for ${item.title}. This image is only available in the Rijksmuseum`;
     }

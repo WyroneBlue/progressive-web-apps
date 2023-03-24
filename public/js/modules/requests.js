@@ -25,16 +25,19 @@ export const renderSkeleton = (list, container = true) => {
 }
 
 // standard fetch items call: returns 24 items
-export const fetchItems = async (page) => await get(`${baseWithKey}&ps=${itemCount}&p=${page}`);
+export const fetchItems = async (page) => await get(`/api/art?page=${page}&raw=false`);
 
 // fetch items with keyword search, sort and filters: returns 48 items
-export const searchItems = async (page, search, sort, topPiece, imgOnly) => await get(`${baseWithKey}&p=${page}&ps=${searchItemCount}&q=${search}&s=${sort}&toppieces=${topPiece}&imgonly=${imgOnly}`);
+export const searchItems = async (page, search, sort, topPiece, imgOnly) => {
 
-// fetch item details
-export const fetchDetails = async (id) => await get(`${base}/${id}?key=${apiKey}`);
+    const topPieceBool = topPiece === 'on' ? true : false;
+    const imgOnlyBool = imgOnly === 'on' ? true : false
+    return await get(`/api/art/search?page=${page}&raw=false&search=${search}&sort=${sort}&topPiece=${topPieceBool}&imgOnly=${imgOnlyBool}`);
+};
 
 // fetch item images for detail page
-export const fetchDetailImages = async (id) => await get(`${base}/${id}/tiles?key=${apiKey}`);
+// export const fetchDetailImages = async (id) => await get(`${base}/${id}/tiles?key=${apiKey}`);
+export const fetchDetailImages = async (id) => await get(`/art/details/images`);
 
 // fetch details for favorite items
 export const fetchFavoriteDetails = async (favorites) => await post(`/api/favorites`, {
