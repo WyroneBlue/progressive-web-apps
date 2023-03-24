@@ -1,17 +1,19 @@
-/* CSS Document */
 // Variables
 @import 'variables';
 
-// Styles
-@import 'global';
-@import 'header';
-@import 'footer';
+// Global styles
+@import './global';
+
+// Partials
+@import './partials/header';
+@import './partials/footer';
+@import './partials/aside';
 
 // Components
-@import 'spinner';
-@import 'dialog';
-@import 'aside';
-@import 'card';
+@import './components/spinner';
+@import './components/dialog';
+@import './components/card';
 
 // Pages
-@import 'details';
+@import './pages/home';
+@import './pages/details';
