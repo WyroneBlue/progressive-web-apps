@@ -6,12 +6,6 @@
     position: relative;
 }
 
-/* Custom font */
-@font-face {
-    font-family: 'MuseoModerno';
-    src: url('../../fonts/MuseoModerno-VariableFont_wght.ttf');
-}
-
 /* Focus state outline */
 :focus-visible{
     outline: $focus-outline;
@@ -20,7 +14,7 @@
 
 /* Global styles */
 body {
-    font-family: 'MuseoModerno', sans-serif;
+    font-family: $font-family;
     max-width: 960px;
     margin-inline: auto;
 }
@@ -39,6 +33,7 @@ a{
 button{
     cursor: pointer;
     appearance: none;
+    font-family: $font-family;
 }
 
 ul, menu{

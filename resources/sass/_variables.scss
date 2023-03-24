@@ -17,3 +17,11 @@ $grid-col-3: repeat(3, 1fr);
 $container-padding: 20px;
 
 $focus-outline: 4px solid $accent-1;
+
+/* Custom font */
+@font-face {
+    font-family: 'MuseoModerno';
+    src: url('../../fonts/MuseoModerno-VariableFont_wght.ttf');
+}
+
+$font-family: 'MuseoModerno', sans-serif;

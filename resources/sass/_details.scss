@@ -63,4 +63,18 @@ main#details article button{
     height: 50px;
     border-radius: 50%;
 }
+
+main#details article button.loading::before{
+    content: "";
+    position: absolute;
+    left: 52%;
+    top: 20%;
+    display: block;
+    width: 30px;
+    aspect-ratio: 1/1;
+    border: 2px dashed black;
+    border-radius: 50%;
+    transform-origin: left;
+    animation: spinner 2s linear infinite;
+}
 /* End details */

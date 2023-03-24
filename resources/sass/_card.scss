@@ -242,4 +242,11 @@ main ul > li:focus-within:not(:has(button.mobile)) menu button,
 aside ul > li:focus-within:not(:has(button.mobile)) menu button{
     opacity: 1;
 }
+
+#pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
 /* End items main and aside */
