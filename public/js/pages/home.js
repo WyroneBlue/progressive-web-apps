@@ -1,26 +1,48 @@
-import { $, awaitMap } from '../modules/helpers.js';
-import { fetchItems, renderSkeleton } from '../modules/requests.js';
+import { $, awaitMap, getParam } from '../modules/helpers.js';
+import { fetchItems, renderSkeleton, searchItems } from '../modules/requests.js';
 import { artCard } from '../modules/artCard.js';
 import { isFavorite, toggleFavorite } from '../modules/favorites.js';
 
 const main = $('main');
+let cachedPage;
 
 let page = 1;
 let initialLoad = true;
 
 // Show home page
+
+const checkFetch = async () => {
+
+    // Get params from url
+    const search = getParam('search');
+    const sort = getParam('sort');
+    const topPiece = getParam('top-piece');
+    const imgOnly = getParam('image-only');
+
+    if (search || sort || topPiece || imgOnly) {
+        return await searchItems(page, search, sort, topPiece, imgOnly);
+    } else {
+        return await fetchItems(page);
+    }
+
+}
+
 export const loadHome = async () => {
+
+    // cachedPage = main.innerHTML;
 
     // activate loading screen/skeleton
     renderSkeleton(main);
 
-    // Get items from API
-    const { artObjects: items } = await fetchItems(page);
+    // check if fresh fetch or search
+    const items = await checkFetch();
+
     if (!items || items.length === 0) {
         renderError();
         return;
     }
-    const moreresultsSection = $('main > span');
+
+    const moreResultsSection = $('main > span', main);
 
     // Show items with transition
     setTimeout(() => {
@@ -34,17 +56,17 @@ export const loadHome = async () => {
 
     // observe more results section to load more items
     const moreResultsObserver = new IntersectionObserver(async (entries, observer) => {
-        const entry = entries[ 0 ];
+        const entry = entries[0];
         if (entry.isIntersecting) {
 
             if (!initialLoad) {
                 page++;
-                const { artObjects: items } = await fetchItems(page);
+                const items = await checkFetch();
                 renderArtDisplay(items);
             }
         }
     }, moreResultsOptions);
-    moreResultsObserver.observe(moreresultsSection);
+    moreResultsObserver.observe(moreResultsSection);
 }
 
 export async function renderArtDisplay(items, fresh = false, showMore = false) {
