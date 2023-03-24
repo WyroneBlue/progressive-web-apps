@@ -33,6 +33,20 @@ const favoritesList = $('aside[aria-label="favorites"] ul');
 favoButton.addEventListener('click', toggleFavorites);
 closeFavorites.addEventListener('click', toggleFavorites);
 
+// remove item from favorites
+const removeItem = (e, objectNumber) => {
+    const confirmRemove = confirm('Are you sure you want to remove this item from your favorites?');
+
+    if (confirmRemove) {
+        removeFavorite(objectNumber);
+        e.target.closest('li.loaded').remove();
+        const count = showFavoritesCount();
+        if (count === 0) {
+            emptyState(favoritesList);
+        }
+    }
+}
+
 // load favorites from local storage
 const loadFavorites = async () => {
     const count = showFavoritesCount();
