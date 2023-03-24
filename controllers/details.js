@@ -4,12 +4,12 @@ const index = async (req, res) => {
 
     const id = getId(req, res);
     const { artObject: art } = await getArtById(id);
-    // console.log(art);
 
     const page = {
         title: `Details: ${art.title}`
     };
 
+    const back_link = req.headers.referer || '/';
     const external_link = `http://www.rijksmuseum.nl/nl/collectie/${art.objectNumber}`;
 
     // Set image and alt text
@@ -28,7 +28,7 @@ const index = async (req, res) => {
             alt = `Image for ${art.title}.`;
         }
     } catch (error) { // If not, show placeholder image
-        image = './assets/images/explore-placeholder.jpg';
+        image = './images/explore-placeholder.jpg';
         msg = ': <span>Only available in the Rijksmuseum</span>';
         alt = `Placeholder image for ${art.title}. This image is only available in the Rijksmuseum`;
     }
@@ -39,6 +39,7 @@ const index = async (req, res) => {
     res.status(200).render('details', {
         layout: 'details',
         page,
+        back_link,
         external_link,
         art,
         image,
