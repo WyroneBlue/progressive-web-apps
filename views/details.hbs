@@ -1,7 +1,7 @@
-<section>
+<section id="{{ art.objectNumber }}">
     <h1>Details</h1>
     <nav>
-        <a href="/">Back to home</a>
+        <a href="{{ back_link }}">Back to home</a>
         <a href="{{external_link}}" target="_blank">Rijksmuseum </a>
     </nav>
     <article>
@@ -9,7 +9,7 @@
         <div style="{{style}}">
             <img tabIndex="0" src="{{image}}" alt="{{alt}}">
             <p>{{art.longTitle}}</p>
-            <button>{{saveButtonIcon}}</button>
+            <button class="loading">{{saveButtonIcon}}</button>
         </div>
     </article>
 </section>

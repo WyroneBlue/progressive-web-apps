@@ -1,1 +1,40 @@
-<ul></ul>
+{{#if hasItems}}
+    <ul>
+        {{#each cards}}
+            <li class="loaded">
+                <article>
+                    <a href="/art-piece/{{objectNumber}}">
+                        <h3>{{title}}</h3>
+                        <img src="{{smallImg}}" alt="{{alt}}" loading="lazy">
+                    </a>
+                    <menu>
+                        <li>
+                            <button></button>
+                        </li>
+                        <li>
+                            <button>ℹ️</button>
+                        </li>
+                    </menu>
+                    <button tabIndex="-1" class="{{showOptions.class}}">{{showOptions.text}}</button>
+                </article>
+            </li>
+        {{/each}}
+    </ul>
+
+    <div id="pagination">
+        {{#if firstPage}}
+            <a href="/?page={{ nextPage }}">
+                Load more
+            </a>
+        {{else}}
+            <a href="/?page={{ prevPage }}">
+                Previous page
+            </a>
+            <a href="/?page={{ nextPage }}">
+                Next page
+            </a>
+        {{/if}}
+    </div>
+
+{{/if}}
+
