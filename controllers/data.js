@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
+import MobileDetect from 'mobile-detect';
 
 const apiKey = process.env.RIJKSMUSEUM_API_KEY
-console.log('details: ' + apiKey);
 const language = 'nl';
 const base = `https://www.rijksmuseum.nl/api/${language}/collection`;
 const baseWithKey = `${base}?key=${apiKey}`;
@@ -32,35 +32,49 @@ export const getId = (req, res) => {
 
 export const getArt = async (req, res) => {
 
-    const { page } = req.query;
+    const { page, raw } = req.query;
 
     const url = `${baseWithKey}&ps=${itemCount}&p=${page}`;
-    const response = await get(url);
 
-    return response;
+    if (!raw) {
+        const response = await get(url);
+        return response;
+    } else {
+
+        const response = await fetch(url);
+        const { artObjects: items } = await response.json();
+
+        res.send(items);
+    }
 }
 
 export const searchArt = async (req, res) => {
 
-    const { page, search, sort, topPiece, imgOnly } = req.query;
-    const url = `${baseWithKey}&p=${page}&ps=${searchItemCount}&q=${search}&s=${sort}&toppieces=${topPiece}&imgonly=${imgOnly}`;
-    const response = await get(url);
+    const { page, search, sort, topPiece, imgOnly, raw } = req.query;
 
-    return response;
+    const url = `${baseWithKey}&p=${page}&ps=${searchItemCount}&q=${search}&s=${sort}&toppieces=${topPiece}&imgonly=${imgOnly}`;
+
+    if (!raw) {
+        const response = await get(url);
+        return response;
+    } else {
+
+        const response = await fetch(url);
+        const { artObjects: items } = await response.json();
+
+        res.send(items);
+    }
 }
 
 export const getArtById = async (id) => {
 
-    console.log(id);
     const url = `${base}/${id}?key=${apiKey}`
     const response = await get(url);
 
     return response;
 }
 
-export const getArtImages = async (req, res) => {
-
-    const { id } = req.params;
+export const getArtImages = async (id) => {
 
     const url = `${base}/${id}/tiles?key=${apiKey}`
     const response = await get(url);
@@ -76,10 +90,58 @@ export const getArtFavorites = async (req, res) => {
             const { artObject } = await getArtById(favorite);
             return artObject;
         }));
-        console.log(artItems);
+
         res.send(artItems);
     } catch (error) {
         console.error(error);
         return error;
     }
+}
+
+export const getSmallImage = async(req, art) => {
+
+    let image;
+    let alt;
+
+    try { // Try to get the low "z4" image quality
+
+        const images = await getArtImages(art.objectNumber);
+        if (images && images.levels) {
+            const { tiles } = images.levels.filter(image => image.name === "z4")[ 0 ];
+            const lowestImage = tiles[0].url.replace('http', 'https');
+            image = lowestImage;
+        } else {
+            image = art.webImage.url;
+        }
+        alt = `Image for ${art.title}.`;
+
+    } catch (error) { // If that fails, use a placeholder image
+
+        const imgPlaceholder = './images/explore-placeholder.jpg';
+        image = imgPlaceholder;
+        alt = `Placeholder image for ${art.title}. This image is only available in the Rijksmuseum`;
+    }
+
+    // initialize options for mobile and desktop
+    let showOptions = {
+        text: '',
+        class: '',
+    }
+
+    const deviceCheck = new MobileDetect(req.headers['user-agent']);
+    const isMobile = deviceCheck.mobile();
+
+    // set options for mobile and desktop
+    if (isMobile) {
+        showOptions.text = `Click for options`;
+        showOptions.class = 'mobile';
+    } else {
+        showOptions.text = `Hover for options`;
+    }
+
+    return {
+        smallImg: image,
+        alt,
+        showOptions
+    };
 }
