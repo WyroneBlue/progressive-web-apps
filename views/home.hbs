@@ -7,15 +7,12 @@
                         <h3>{{title}}</h3>
                         <img src="{{smallImg}}" alt="{{alt}}" loading="lazy">
                     </a>
-                    <menu>
-                        <li>
-                            <button></button>
-                        </li>
-                        <li>
-                            <button>ℹ️</button>
-                        </li>
-                    </menu>
-                    <button tabIndex="-1" class="{{showOptions.class}}">{{showOptions.text}}</button>
+                    <button tabIndex="-1" class="{{showOptions.class}}">
+                        {{showOptions.text}}
+                        <span>
+                            Make sure javascript is enabled to save art pieces.
+                        </span>
+                    </button>
                 </article>
             </li>
         {{/each}}
@@ -35,6 +32,5 @@
             </a>
         {{/if}}
     </div>
-
 {{/if}}
 
