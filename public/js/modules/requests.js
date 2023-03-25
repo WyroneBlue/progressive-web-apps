@@ -37,7 +37,7 @@ export const searchItems = async (page, search, sort, topPiece, imgOnly) => {
 
 // fetch item images for detail page
 // export const fetchDetailImages = async (id) => await get(`${base}/${id}/tiles?key=${apiKey}`);
-export const fetchDetailImages = async (id) => await get(`/art/details/images`);
+export const fetchDetailImages = async (id) => await get(`/api/art/details/images?id=${id}&raw=false`);
 
 // fetch details for favorite items
 export const fetchFavoriteDetails = async (favorites) => await post(`/api/favorites`, {
