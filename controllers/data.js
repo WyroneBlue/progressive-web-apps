@@ -24,12 +24,6 @@ export const get = async (url) => {
     }
 }
 
-export const getId = (req, res) => {
-
-    const { id } = req.params;
-    return id;
-}
-
 export const getArt = async (req, res) => {
 
     const { page, raw } = req.query;
@@ -74,12 +68,21 @@ export const getArtById = async (id) => {
     return response;
 }
 
-export const getArtImages = async (id) => {
+export const getArtImages = async (req, res) => {
 
-    const url = `${base}/${id}/tiles?key=${apiKey}`
-    const response = await get(url);
+    const { id, raw } = req.query;
 
-    return response;
+    const url = `${base}/${id}/tiles?key=${apiKey}`;
+
+    if (!raw) {
+        const response = await get(url);
+        return response;
+    } else {
+
+        const response = await fetch(url);
+        const images = await response.json();
+        res.send(images);
+    }
 }
 
 export const getArtFavorites = async (req, res) => {
@@ -107,7 +110,7 @@ export const getSmallImage = async(req, art) => {
 
         const images = await getArtImages(art.objectNumber);
         if (images && images.levels) {
-            const { tiles } = images.levels.filter(image => image.name === "z4")[ 0 ];
+            const { tiles } = images.levels.filter(image => image.name === "z4")[0];
             const lowestImage = tiles[0].url.replace('http', 'https');
             image = lowestImage;
         } else {

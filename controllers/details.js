@@ -1,8 +1,8 @@
-import { getArtById, getId } from './data.js';
+import { getArtById } from './data.js';
 
 const index = async (req, res) => {
 
-    const id = getId(req, res);
+    const { id } = req.params;
     const { artObject: art } = await getArtById(id);
 
     const page = {
