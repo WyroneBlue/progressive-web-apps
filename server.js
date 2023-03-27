@@ -28,9 +28,11 @@ app.engine('hbs', engine({
     partialsDir: __dirname + '/views/partials/',
     helpers: import('./utils/hbs-helpers.js')
 }));
+
 app.set('view engine', 'hbs');
-app.set("views", "./views");
-app.use(express.static('public'))
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, 'public')))
+
 
 // Use Routes
 app.use('/', routes);
