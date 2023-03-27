@@ -24,7 +24,7 @@ export const artCard = async({ item, saveButtonIcon, resultsContainer, observe =
 
     } catch (error) { // If that fails, use a placeholder image
 
-        const imgPlaceholder = './images/explore-placeholder.jpg';
+        const imgPlaceholder = './images/rijksmuseum-logo.jpg';
         img = imgPlaceholder;
         alt = `Placeholder image for ${item.title}. This image is only available in the Rijksmuseum`;
     }

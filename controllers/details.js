@@ -28,7 +28,7 @@ const index = async (req, res) => {
             alt = `Image for ${art.title}.`;
         }
     } catch (error) { // If not, show placeholder image
-        image = './images/explore-placeholder.jpg';
+        image = './images/rijksmuseum-logo.jpg';
         msg = ': <span>Only available in the Rijksmuseum</span>';
         alt = `Placeholder image for ${art.title}. This image is only available in the Rijksmuseum`;
     }

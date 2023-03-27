@@ -120,7 +120,7 @@ export const getSmallImage = async(req, art) => {
 
     } catch (error) { // If that fails, use a placeholder image
 
-        const imgPlaceholder = './images/explore-placeholder.jpg';
+        const imgPlaceholder = './images/rijksmuseum-logo.jpg';
         image = imgPlaceholder;
         alt = `Placeholder image for ${art.title}. This image is only available in the Rijksmuseum`;
     }
