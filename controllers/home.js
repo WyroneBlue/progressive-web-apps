@@ -33,4 +33,15 @@ const index = async(req, res) => {
     });
 };
 
-export { index }
+const offline = (req, res) => {
+    const page = {
+        title: "Offline"
+    };
+
+    res.status(200).render('offline', {
+        layout: 'offline',
+        page
+    });
+};
+
+export { index, offline }

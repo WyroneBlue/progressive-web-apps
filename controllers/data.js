@@ -71,7 +71,6 @@ export const getArtById = async (id) => {
 export const getArtImages = async (req, res) => {
 
     const { id, raw } = req.query;
-
     const url = `${base}/${id}/tiles?key=${apiKey}`;
 
     if (!raw) {
@@ -85,14 +84,20 @@ export const getArtImages = async (req, res) => {
     }
 }
 
+export const getFavoritesById = async (favorites) => {
+    const artItems = await Promise.all(favorites.map(async (favorite) => {
+        const { artObject } = await getArtById(favorite);
+        return artObject;
+    }));
+
+    return artItems;
+}
+
 export const getArtFavorites = async (req, res) => {
 
     try {
         const { favorites } = req.body;
-        const artItems = await Promise.all(favorites.map(async (favorite) => {
-            const { artObject } = await getArtById(favorite);
-            return artObject;
-        }));
+        const artItems = await getFavoritesById(favorites);
 
         res.send(artItems);
     } catch (error) {
@@ -108,7 +113,9 @@ export const getSmallImage = async(req, art) => {
 
     try { // Try to get the low "z4" image quality
 
-        const images = await getArtImages(art.objectNumber);
+        req.query.id = art.objectNumber;
+        const images = await getArtImages(req);
+
         if (images && images.levels) {
             const { tiles } = images.levels.filter(image => image.name === "z4")[0];
             const lowestImage = tiles[0].url.replace('http', 'https');
