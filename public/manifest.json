@@ -1,22 +1,32 @@
 {
-    "name": "Rijksmuseum Gallery App",
+    "theme_color": "#b587f8",
+    "background_color": "#c2e0c2",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "RIjksmuseum Gallery App",
     "short_name": "RGA",
-    "description": "Rijksmuseum Gallery App: the best way to explore the Rijksmuseum collection and save your favorites",
     "icons": [
         {
-            "src": "./images/rijksmuseum-logo.jpg",
-            "sizes": "72x72",
-            "type": "image/jpg"
-        },
-        {
-            "src": "./images/rijksmuseum-logo.jpg",
+            "src": "./icons/icon-192x192.png",
             "sizes": "192x192",
-            "type": "image/jpg"
+            "type": "image/png"
         },
         {
-            "src": "./images/rijksmuseum-logo.jpg",
+            "src": "./icons/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "./icons/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "./icons/icon-512x512.png",
             "sizes": "512x512",
-            "type": "image/jpg"
+            "type": "image/png"
         }
-    ]
+    ],
+    "description": "Rijksmuseum Gallery App: the best way to explore the Rijksmuseum collection and save your favorites"
 }
