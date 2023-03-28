@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> head }}
+<body>
+    <header>
+        {{> title }}
+        {{> nav headline='Favorites'}}
+    </header>
+    <main id="favorites" class="no-js">
+        {{{body}}}
+    </main>
+    {{> favorites}}
+    {{> filters}}
+    {{> footer }}
+    {{> modal }}
+    {{> scripts }}
+    <script src="/js/pages/favorites.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+{{#if hasItems}}
+    <ul>
+        {{#each cards}}
+            <li class="loaded">
+                <article>
+                    <a href="/art-piece/{{objectNumber}}">
+                        <h3>{{title}}</h3>
+                        <img src="{{smallImg}}" alt="{{alt}}" loading="lazy">
+                    </a>
+                    <button tabIndex="-1" class="{{showOptions.class}}">
+                        {{showOptions.text}}
+                        <span>
+                            Make sure javascript is enabled to save art pieces.
+                        </span>
+                    </button>
+                </article>
+            </li>
+        {{/each}}
+    </ul>
+{{ else }}
+    <section>
+
+        <p class="no-items">
+            You have no favorite art pieces yet.
+        </p>
+
+        <a href="/">Go to the art page</a> to find some art pieces.
+    </section>
+{{/if}}

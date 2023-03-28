@@ -1,8 +1,7 @@
 import { Router } from 'express';
 const router = Router();
-import { index, offline } from "../controllers/home.js";
+import { index } from "../controllers/favorites.js";
 
 router.get('/', index);
-router.get('/offline', offline);
 
 export default router;
