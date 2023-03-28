@@ -1,13 +1,5 @@
 import { get, post } from './helpers.js';
 
-const apiKey = 'dJcMjMTI';
-const language = 'nl';
-const base = `https://www.rijksmuseum.nl/api/${language}/collection`;
-const baseWithKey = `${base}?key=${apiKey}`;
-
-const itemCount = 24;
-const searchItemCount = 48;
-
 // render skeleton for loading items
 export const renderSkeleton = (list, container = true) => {
 
@@ -42,4 +34,8 @@ export const fetchDetailImages = async (id) => await get(`/api/art/details/image
 // fetch details for favorite items
 export const fetchFavoriteDetails = async (favorites) => await post(`/api/favorites`, {
    favorites
+});
+
+export const insertFavorites = (favorites) => post(`/api/favorites/save`, {
+    favorites
 });

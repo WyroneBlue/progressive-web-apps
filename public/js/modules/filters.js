@@ -4,12 +4,9 @@ import { closeOnEscape } from '../app.js';
 import { renderSkeleton } from './requests.js';
 
 export const filters = $('aside[aria-label="filters"]');
-const filterButton = $('footer button[aria-label="toggle-filters"]');
+const filterButton = $('footer a[aria-label="toggle-filters"]');
 const form = $('aside form');
 const closeFilters = $('aside[aria-label="filters"] button');
-
-filterButton.addEventListener('click', toggleFilters);
-closeFilters.addEventListener('click', toggleFilters);
 
 // Get values from form and search for items
 const searhArt = async (e) => {
@@ -61,3 +58,5 @@ export function setTabindex(items, value) {
 
 
 form.addEventListener('submit', searhArt);
+filterButton.addEventListener('click', toggleFilters);
+closeFilters.addEventListener('click', toggleFilters);

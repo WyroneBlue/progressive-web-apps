@@ -1,8 +1,14 @@
 import { $, awaitMap } from './helpers.js';
 import { filters, toggleFilters } from './filters.js';
 import { closeOnEscape } from '../app.js';
-import { renderSkeleton, fetchFavoriteDetails } from './requests.js';
+import { renderSkeleton, fetchFavoriteDetails, insertFavorites } from './requests.js';
 import { artCard } from './artCard.js';
+
+// Get all the favorite buttons
+export const favorites = $('aside[aria-label="favorites"]');
+const favoButton = $('footer a[aria-label="toggle-favorites"]');
+const closeFavorites = $('aside[aria-label="favorites"] button');
+const favoritesList = $('aside[aria-label="favorites"] ul');
 
 // Favorites from local storage
 const storage = localStorage.getItem('favorites');
@@ -23,15 +29,6 @@ export const showFavoritesCount = () => {
 
     return favoritesArray.length;
 }
-
-// Get all the favorite buttons
-export const favorites = $('aside[aria-label="favorites"]');
-const favoButton = $('footer button[aria-label="toggle-favorites"]');
-const closeFavorites = $('aside[aria-label="favorites"] button');
-const favoritesList = $('aside[aria-label="favorites"] ul');
-
-favoButton.addEventListener('click', toggleFavorites);
-closeFavorites.addEventListener('click', toggleFavorites);
 
 // remove item from favorites
 const removeItem = (e, objectNumber) => {
@@ -60,6 +57,8 @@ const loadFavorites = async () => {
 
     // Fetch details for each item
     const items = await fetchFavoriteDetails(favoritesArray);
+    saveFavorites(favoritesArray);
+
     favoritesList.innerHTML = '';
 
     // Render each item
@@ -136,6 +135,14 @@ export function removeFavorite(id) {
 }
 
 // Save favorites to local storage
-function saveFavorites() {
-    localStorage.setItem('favorites', JSON.stringify(favoritesArray));
+export async function saveFavorites() {
+    const json = JSON.stringify(favoritesArray);
+    localStorage.setItem('favorites', json);
+    await insertFavorites(json);
 }
+
+favoButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleFavorites();
+});
+closeFavorites.addEventListener('click', toggleFavorites);

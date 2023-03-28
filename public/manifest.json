@@ -1,10 +1,10 @@
 {
     "theme_color": "#b587f8",
-    "background_color": "#c2e0c2",
+    "background_color": "white",
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "RIjksmuseum Gallery App",
+    "name": "Rijksmuseum Gallery App",
     "short_name": "RGA",
     "icons": [
         {

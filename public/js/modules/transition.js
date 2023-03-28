@@ -5,7 +5,7 @@ import { $, $$ } from './helpers.js';
 const main = $('main');
 
 // Get all anchor elements
-const anchors = $$('a:not([target="_blank"])');
+const anchors = $$('a:not([target="_blank"]):not([data-transition="true"])');
 
 export const goToPage = (e) => {
     e.preventDefault();
@@ -38,6 +38,10 @@ export function transitionPage(func, time = 1000) {
 export function setEventListener(el, func, ev = 'click'){
     el.addEventListener(ev, func);
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    main.classList.add('page-transition');
+});
 
 window.addEventListener('load', () => {
     main.classList.remove('page-transition');
