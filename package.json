@@ -17,7 +17,8 @@
     "express-handlebars": "^7.0.2",
     "mobile-detect": "^1.4.5",
     "node-fetch": "^3.3.1",
-    "node-sass": "^8.0.0"
+    "node-sass": "^8.0.0",
+    "nodemon": "^2.0.22"
   },
   "type": "module",
   "devDependencies": {
