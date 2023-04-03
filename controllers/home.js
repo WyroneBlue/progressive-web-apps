@@ -38,9 +38,11 @@ const offline = (req, res) => {
         title: "Offline"
     };
 
+    const backLink = req.headers.referer || '/';
     res.status(200).render('offline', {
         layout: 'offline',
-        page
+        page,
+        backLink
     });
 };
 
