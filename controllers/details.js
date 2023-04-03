@@ -9,8 +9,8 @@ const index = async (req, res) => {
         title: `Details: ${art.title}`
     };
 
-    const back_link = req.headers.referer || '/';
-    const external_link = `http://www.rijksmuseum.nl/nl/collectie/${art.objectNumber}`;
+    const backLink = req.headers.referer || '/';
+    const externalLink = `http://www.rijksmuseum.nl/nl/collectie/${art.objectNumber}`;
 
     // Set image and alt text
     let image = '';
@@ -39,8 +39,8 @@ const index = async (req, res) => {
     res.status(200).render('details', {
         layout: 'details',
         page,
-        back_link,
-        external_link,
+        backLink,
+        externalLink,
         art,
         image,
         msg,
