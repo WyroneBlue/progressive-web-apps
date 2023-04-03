@@ -1,3 +1,4 @@
+import { getLocalStorage, setLocalStorage } from '../utils/Localstorage.js';
 import { getFavoritesById, getSmallImage } from './data.js';
 
 const favorites = [];
@@ -8,9 +9,8 @@ const index = async (req, res) => {
         title: "Favorites"
     };
 
-    // console.log(favorites);
+    const favorites = JSON.parse(getLocalStorage('favorites')) || [];
     const items = await getFavoritesById(favorites);
-    console.log(items);
 
     const cards = await Promise.all(items.map(async (item) => {
 
@@ -22,9 +22,7 @@ const index = async (req, res) => {
             showOptions,
             ...item,
         }
-    }))
-
-    console.log(cards);
+    }));
 
     res.status(200).render('favorites', {
         layout: 'favorites',
@@ -39,13 +37,7 @@ export const insertArtFavorites = async (req, res) => {
 
     const { favorites: items } = req.body;
 
-    console.log(items);
-    await JSON.parse(items).forEach(favorite => {
-        if (!favorites.includes(favorite)) {
-            favorites.push(favorite);
-        }
-    });
-    console.log(favorites);
+    setLocalStorage('favorites', items);
 
     res.status(200).json({
         status: 'success',
