@@ -1,6 +1,7 @@
 const CACHE_NAME = 'static-v1';
 const RUNTIME_CACHE_NAME = 'runtime-v1';
 const BOOKMARKS_CACHE_NAME = 'bookmarks-v1';
+const OFFLINE_URL = '/offline';
 
 const CORE_ASSETS = [
     '/',
@@ -9,15 +10,10 @@ const CORE_ASSETS = [
     '/?page=3',
     '/?page=4',
     '/?page=5',
-    '/?page=6',
-    '/?page=7',
-    '/?page=8',
-    '/?page=9',
-    '/?page=10',
     '/offline',
     '/favorites',
     '/css/app.css',
-    '/js/app.js',
+    // '/js/app.js',
     '/images/rijksmuseum-logo.jpg',
     '/fonts/MuseoModerno-VariableFont_wght.ttf',
     '/manifest.json',
@@ -58,31 +54,31 @@ self.addEventListener('fetch', (event) => {
     console.log('Service worker fetching.');
 
     // get search params
-    const url = new URL(event.request.url);
-    // console.log(url);
-    const path = url.pathname;
-    // console.log(path);
+    const requestUrl = new URL(event.request.url);
+    const path = requestUrl.pathname;
+    const param = requestUrl.searchParams.get('page');
 
-    const param = url.searchParams.get('page');
-    console.log(param);
-
-    // const notHomeOrOffline = path !== '/' && path !== '/offline';
-
-    if (event.request.headers.get('accept').includes('text/html')) {
-        event.respondWith(
-            caches.open(RUNTIME_CACHE_NAME)
-            .then(cache => cache.match(event.request))
-            .then(response => response || fetchAndCache(event.request))
-            .catch(() => caches.open(CACHE_NAME).then(cache => cache.match('/offline')))
-        )
-    } else if (CORE_ASSETS.includes(path)) {
+    if (CORE_ASSETS.includes(path)) {
 
         const pathWithParam = param ? `${path}?page=${param}` : path;
-        console.log(pathWithParam);
         event.respondWith(
             caches.open(CACHE_NAME)
             .then(cache => cache.match(pathWithParam))
+            .then(response => response || fetch(event.request))
+            .catch(() => caches.match(OFFLINE_URL))
         )
+    } else if (requestUrl.pathname !== '/' && !requestUrl.pathname.endsWith('.js') && !requestUrl.pathname.endsWith('.jpg') && !requestUrl.pathname.endsWith('.png') && !requestUrl.pathname.endsWith('.gif')) {
+        event.respondWith(
+            caches.match(event.request).then(function (response) {
+                return response || fetch(event.request).then(async function (response) {
+                    const cache = await caches.open(CACHE_NAME);
+                    cache.put(event.request, response.clone());
+                    return response;
+                });
+            }).catch(function () {
+                return caches.match('/offline');
+            })
+        );
     }
 })
 
@@ -96,18 +92,3 @@ async function fetchAndCache(request) {
         return response
     })
 }
-
-// self.addEventListener('fetch', (event) => {
-//     event.respondWith(
-//         fetch(event.request)
-//         .then((response) => {
-
-//             const clone = response.clone();
-//             caches.open(CACHE_NAME)
-//             .then((cache) => cache.put(event.request, clone));
-
-//             return response;
-//         })
-//         .catch((error) => caches.match(event.request).then((response) => response))
-//     );
-// });
