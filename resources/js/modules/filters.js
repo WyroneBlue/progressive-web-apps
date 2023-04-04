@@ -16,13 +16,6 @@ const searhArt = async (e) => {
     const resultsContainer = $('main > ul');
     renderSkeleton(resultsContainer, false);
 
-    // let freshLoad = true;
-
-    // const search = $('label:first-of-type input', form).value;
-    // const sort = $('fieldset input:checked', form).value;
-    // const topPiece = $('fieldset label:first-of-type input[name="top-piece"]', form).checked;
-    // const imageOnly = $('fieldset label:last-of-type input[name="image-only"]', form).checked;
-
     // submit form with values
     form.submit();
 }
