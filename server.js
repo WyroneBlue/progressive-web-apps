@@ -21,12 +21,13 @@ import routes from "./routes/index.js";
 
 // HBS Setup
 import { engine } from 'express-handlebars';
+
 app.engine('hbs', engine({
     extname: 'hbs',
     defaultLayout: 'main',
     layoutsDir: __dirname + '/views/layouts/',
     partialsDir: __dirname + '/views/partials/',
-    helpers: import('./utils/hbs-helpers.js')
+    helpers: await import('./utils/hbs-helpers.js')
 }));
 
 app.set('view engine', 'hbs');
