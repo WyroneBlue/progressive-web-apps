@@ -22,6 +22,7 @@ $focus-outline: 4px solid $accent-1;
 @font-face {
     font-family: 'MuseoModerno';
     src: url('../../fonts/MuseoModerno-VariableFont_wght.ttf');
+    font-display: swap;
 }
 
 $font-family: 'MuseoModerno', sans-serif;
