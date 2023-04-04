@@ -4,7 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>{{ page.title }} | RGA</title>
     <meta name="description" content="Rijksmuseum Gallery App">
-    <link rel="stylesheet" type="text/css" href="/css/app.css">
-    <link rel="stylesheet" href="https://use.typekit.net/bui5xab.css">
     <link rel="manifest" href="/manifest.json">
+    {{!-- <link rel="stylesheet" type="text/css" href="/css/app.css"> --}}
+    <link rel="preload" href="/css/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/fonts/MuseoModerno-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <noscript><link rel="stylesheet" href="/css/app.css"></noscript>
 </head>
