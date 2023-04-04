@@ -17,13 +17,14 @@ const PAGES = [
 
 (function () {
     const dir = 'modules';
-    buildJS([ `${RESOURCE_BASE}/${dir}` ], `${PUBLIC_BASE}/modules`, '.js');
+    buildJS([`${RESOURCE_BASE}/${dir}/*`], `${PUBLIC_BASE}/${dir}`, '.js');
 }());
 
 
 (function () {
+    const dir = 'pages';
     PAGES.forEach((page) => {
-        buildJS([`${RESOURCE_BASE}/pages/${page}.js`], `${PUBLIC_BASE}/pages`, '.js');
+        buildJS([`${RESOURCE_BASE}/${dir}/${page}.js`], `${PUBLIC_BASE}/${dir}`, '.js');
     });
 }());
 
