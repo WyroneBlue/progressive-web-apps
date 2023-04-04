@@ -4,7 +4,7 @@ import { closeOnEscape } from '../app.js';
 import { renderSkeleton } from './requests.js';
 
 export const filters = $('aside[aria-label="filters"]');
-const filterButton = $('footer a[aria-label="toggle-filters"]');
+const filterButton = $('footer button[aria-label="toggle-filters"]');
 const form = $('aside form');
 const closeFilters = $('aside[aria-label="filters"] button');
 
