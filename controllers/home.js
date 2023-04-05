@@ -1,6 +1,6 @@
 import { getArt, getSmallImage } from './data.js';
 
-const index = async(req, res) => {
+export const index = async(req, res) => {
 
     const page = {
         title: "Home"
@@ -33,7 +33,7 @@ const index = async(req, res) => {
     });
 };
 
-const offline = (req, res) => {
+export const offline = (req, res) => {
     const page = {
         title: "Offline"
     };
@@ -45,5 +45,3 @@ const offline = (req, res) => {
         backLink
     });
 };
-
-export { index, offline }

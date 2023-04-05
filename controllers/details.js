@@ -1,6 +1,6 @@
 import { getArtById } from './data.js';
 
-const index = async (req, res) => {
+export const index = async (req, res) => {
 
     const { id } = req.params;
     const { artObject: art } = await getArtById(id);
@@ -48,5 +48,3 @@ const index = async (req, res) => {
         style,
     });
 };
-
-export { index }

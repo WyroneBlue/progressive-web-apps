@@ -1,9 +1,7 @@
 import { getLocalStorage, setLocalStorage } from '../utils/Localstorage.js';
 import { getFavoritesById, getSmallImage } from './data.js';
 
-const favorites = [];
-
-const index = async (req, res) => {
+export const index = async (req, res) => {
 
     const page = {
         title: "Favorites"
@@ -44,5 +42,3 @@ export const insertArtFavorites = async (req, res) => {
         message: 'Favorites saved',
     });
 }
-
-export { favorites, index }
