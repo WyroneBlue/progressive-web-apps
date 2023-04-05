@@ -23,7 +23,7 @@ const sassCompiler = gulpSass(sass);
         largeFile: true
     }))
     .pipe(cleanCSS())
-        .pipe(sourcemaps.write('./maps/'))
+    .pipe(sourcemaps.write('./maps/'))
     .pipe(leec())
     .pipe(gulp.dest('./public/css'))
 }());
