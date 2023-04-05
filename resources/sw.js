@@ -79,15 +79,4 @@ self.addEventListener('fetch', (event) => {
             })
         );
     }
-})
-
-async function fetchAndCache(request) {
-    return fetch(request)
-    .then(response => {
-        const clone = response.clone()
-        caches.open(RUNTIME_CACHE_NAME)
-            .then(cache => cache.put(request, clone))
-
-        return response
-    })
-}
+});
