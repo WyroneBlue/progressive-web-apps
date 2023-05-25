@@ -6,7 +6,7 @@ aside ul{
     width: 100%;
 }
 
-body:has(header div input:last-of-type:checked) main ul{
+body:has(header > section > div > input:last-of-type:checked) main ul{
     grid-template-columns: $grid-col-3;
 }
 
