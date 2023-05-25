@@ -20,7 +20,7 @@ This readme is a quick overview of the project.
 For the full documentation, please visit my [Github Wiki](https://github.com/WyroneBlue/progressive-web-apps/wiki)
 
 ## Live Demo
-Visit our live demo in Github Pages [here](https://progressive-web-apps-production.up.railway.app/).
+Visit our live demo in Github Pages [here](https://progressive-web-apps-production-b909.up.railway.app/).
 
 ## Description
 The Rijksmuseum Gallery App is a web application that allows users to browse and search through a collection of art pieces from the Rijksmuseum. Users can also filter and sort the collection, and save their favorite pieces for later viewing. The app is built NodeJS, Handlebars, and Sass.
